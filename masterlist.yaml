@@ -705,22 +705,22 @@ groups:
       - *preFixesGroup
       - *addonsGroup
 
-  - name: &underridesGroup Underrides
-    after: [ *earlyLoadersGroup ]
-
-  - name: default
-    after:
-      - *fixesGroup
-      - *underridesGroup
-
   - name: &coreGroup Core Mods
-    after: [ default ]
+    after: [ *fixesGroup ]
 
   - name: &lowPriorityGroup Low Priority Overrides
     after: [ *coreGroup ]
 
+  - name: &underridesGroup Underrides
+    after: [ *earlyLoadersGroup ]
+
+  - name: default
+    after: [ *underridesGroup ]
+
   - name: &highPriorityGroup High Priority Overrides
-    after: [ *lowPriorityGroup ]
+    after:
+      - *default
+      - *lowPriorityGroup
 
   - name: &lateLoadersGroup Late Loaders
     after: [ *highPriorityGroup ]
