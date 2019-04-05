@@ -691,27 +691,26 @@ groups:
       - *floraGroup
       - *earlyLoadersGroup
 
-  - name: &preFixesGroup Pre Fixes (Patches/Add-ons)
-
-  - name: &fixesGroup Fixes & Resources
-    after:
-      - *preFixesGroup
-      - *earlyLoadersGroup
-
   - name: &preAddonsGroup Pre Add-ons (Patches/Add-ons)
 
   - name: &addonsGroup Add-ons & Expansions
     after:
       - *preAddonsGroup
-      - *fixesGroup
       - *landscapeGroup
+
+  - name: &preFixesGroup Pre Fixes (Patches/Add-ons)
+
+  - name: &fixesGroup Fixes & Resources
+    after:
+      - *preFixesGroup
+      - *addonsGroup
 
   - name: &underridesGroup Underrides
     after: [ *earlyLoadersGroup ]
 
   - name: default
     after:
-      - *addonsGroup
+      - *fixesGroup
       - *underridesGroup
 
   - name: &coreGroup Core Mods
